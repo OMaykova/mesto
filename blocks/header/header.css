@@ -1,0 +1,9 @@
+.header {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 45px;
+}
+.header::after {
+  border-bottom: 1px solid;
+  border-color: rgba (84, 84, 84, 0.7);
+}
