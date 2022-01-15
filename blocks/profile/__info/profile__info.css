@@ -2,7 +2,11 @@
   width: 336px;
   margin: 0;
   padding: 0;
+  padding-left: 30px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-
- }
+  grid-template-columns: 294px 1fr;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 16px;
+  column-gap: 18px;
+  align-items: flex-end;
+}

@@ -1,0 +1,12 @@
+.profile__info-description {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.22;
+  font-weight: 400;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-self: flex-start;
+}

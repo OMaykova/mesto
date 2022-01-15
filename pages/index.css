@@ -7,9 +7,10 @@
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__card/profile__card.css);
 @import url(../blocks/profile/__info/profile__info.css);
-@import url(../blocks/profile/__info/_name/profile__info_name.css);
-@import url(../blocks/profile/__info/_description/profile__info_description.css);
+@import url(../blocks/profile/__info-name/profile__info-name.css);
+@import url(../blocks/profile/__info-description/profile__info-description.css);
 @import url(../blocks/avatar/avatar.css);
 @import url(../blocks/addButton/addButton.css);
 @import url(../blocks/editButton/editbutton.css);
 @import url(../blocks/addButton/__image/addButton__image.css);
+@import url(../blocks/editButton/__image/editButton__image.css);
