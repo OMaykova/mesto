@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Проектная работа №4 в рамках обучения на Яндекс.Практикум">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="место, путешествия, россия, фотографии">
   <meta name="author" content="Ольга Майкова">
   <link rel="stylesheet" href="pages/index.css">
-  <title></title>
+  <title>Mesto: делитесь фотографиями своих путешествий</title>
 </head>
 <body>
   <div class="page">
@@ -16,14 +16,19 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="avatar">
+        <figure class="profile__card">
+        <img class="avatar" src="images/kusto.jpg" alt="Фотография Жак-Ив Кусто">
         <div class="profile__info">
-          <h2 class="profile__info profile__info_name"></h2>
-          <p class="profile__info profile__info_description"></p>
+          <h2 class="profile__info profile__info_name">Жак-Ив Кусто</h2>
+          <button class="editButton">
+            <img class="editButton__image" src="images/editButton.svg" alt="кнопка редактировать">
+          </button>
+          <p class="profile__info profile__info_description">Исследователь океана</p>
         </div>
-        <button class="addButton">
-          <img class="addButton">
-        </button>
+      </figure>
+      <button class="addButton">
+        <img class="addButton__image" src="images/addButton.svg" alt="кнопка добавить">
+      </button>
       </section>
     </main>
     <footer class="footer"></footer>

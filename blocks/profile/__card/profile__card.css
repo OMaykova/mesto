@@ -1,0 +1,5 @@
+.profile__card {
+  display: flex;
+  margin: 0;
+  align-items: center;
+}
