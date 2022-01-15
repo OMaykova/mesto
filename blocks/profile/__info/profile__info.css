@@ -8,5 +8,4 @@
   grid-template-rows: 1fr 1fr;
   row-gap: 16px;
   column-gap: 18px;
-  align-items: flex-end;
-}
+  }
