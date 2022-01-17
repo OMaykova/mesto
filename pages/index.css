@@ -12,8 +12,6 @@
 @import url(../blocks/avatar/avatar.css);
 @import url(../blocks/addButton/addButton.css);
 @import url(../blocks/editButton/editbutton.css);
-@import url(../blocks/addButton/__image/addButton__image.css);
-@import url(../blocks/editButton/__image/editButton__image.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);

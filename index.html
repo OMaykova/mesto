@@ -20,15 +20,11 @@
         <img class="avatar" src="images/kusto.jpg" alt="Фотография Жак-Ив Кусто">
         <div class="profile__info">
           <h2 class="profile__info-name">Жак-Ив Кусто</h2>
-          <button class="editButton">
-            <img class="editButton__image" src="images/editButton.svg" alt="кнопка редактировать">
-          </button>
-          <p class="profile__info-description">Исследователь океана</p>
+          <button class="editButton" title="Редактировать" aria-label="Кнопка Редактировать"></button>
+        <p class="profile__info-description">Исследователь океана</p>
         </div>
-      </figure>
-      <button class="addButton">
-        <img class="addButton__image" src="images/addButton.svg" alt="кнопка добавить">
-      </button>
+        </figure>
+      <button class="addButton" title="Добавить" aria-label="Кнопка Добавить"></button>
       </section>
       <section class="elements">
         <figure class="element">
@@ -78,6 +74,16 @@
     <footer class="footer">
       <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
     </footer>
+    <div class="popup popup__hidden">
+      <div class="popup__container">
+        <button class="popup__closeButton" title="Закрыть" aria-label="Кнопка Закрыть"></button>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <p class="popup__name">Жак-Ив Кусто</p>
+        <p class="popup__description">Исследователь океана</p>
+        <button class="popup__saveButton" title="Сохранить" aria-label="Кнопка Сохранить">Сохранить</button>
+      </div>
+    </div>
   </div>
+  <script src="scripts/index.js"></script>
 </body>
 </html>

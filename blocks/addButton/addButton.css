@@ -8,6 +8,9 @@
   position: absolute;
   right: 0;
   top: 75px;
+  background-image: url(../../images/addButton.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .addButton:hover {
   opacity: 0.6;
