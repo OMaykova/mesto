@@ -14,3 +14,11 @@
 @import url(../blocks/editButton/editbutton.css);
 @import url(../blocks/addButton/__image/addButton__image.css);
 @import url(../blocks/editButton/__image/editButton__image.css);
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__caption/element__caption.css);
+@import url(../blocks/element/__caption-title/element__caption-title.css);
+@import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
