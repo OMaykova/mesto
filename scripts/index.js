@@ -1,4 +1,4 @@
-const editProfileDescriptionButton = document.querySelector('.editButton');
+const profileEditButton = document.querySelector('.editButton');
 const popup = document.querySelector('.popup');
 const popupCloseButton = document.querySelector('.popup__closeButton');
 const popupSaveButton = document.querySelector('.popup__saveButton');
@@ -8,7 +8,7 @@ const profileDescription = document.querySelector('.profile__info-description');
 const popupDescription = document.querySelector('.popup__description');
 const form = document.querySelector('.popup__container');
 
-editProfileDescriptionButton.addEventListener('click', function () {
+profileEditButton.addEventListener('click', function () {
   popup.classList.add('popup__opened');
   popupName.setAttribute('value', profileName.textContent);
   popupDescription.setAttribute('value', profileDescription.textContent);
