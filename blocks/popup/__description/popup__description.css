@@ -11,6 +11,6 @@
   border-bottom: 1px solid;
   border-color: rgba(84, 84, 84, .2);
 }
-.popup__description {
+.popup__description:focus {
   outline: none;
 }
