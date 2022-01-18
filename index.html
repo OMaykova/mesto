@@ -31,7 +31,7 @@
           <img class="element__image" src="images/karachaevo.jpg" alt="Фотография Карачаевска">
           <figcaption class="element__caption">
           <h3 class="element__caption-title">Карачаевск</h3>
-          <div class="element__like"></div>
+          <button class="element__like"></button>
           </figcaption>
         </figure>
         <figure class="element">
@@ -74,14 +74,14 @@
     <footer class="footer">
       <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup popup__hidden">
-      <div class="popup__container">
-        <button class="popup__closeButton" title="Закрыть" aria-label="Кнопка Закрыть"></button>
+    <div class="popup">
+      <form class="popup__container">
+        <button class="popup__closeButton" title="Закрыть" aria-label="Кнопка Закрыть" type="reset"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <p class="popup__name">Жак-Ив Кусто</p>
-        <p class="popup__description">Исследователь океана</p>
+        <input class="popup__name" type="text" name="name" maxlength="30" value="">
+        <input class="popup__description" type="text" name="description" maxlength="30" value="">
         <button class="popup__saveButton" title="Сохранить" aria-label="Кнопка Сохранить">Сохранить</button>
-      </div>
+      </form>
     </div>
   </div>
   <script src="scripts/index.js"></script>

@@ -1,12 +1,11 @@
 .profile__info {
   width: 336px;
   margin: 0;
-  padding: 0;
-  padding-left: 30px;
+  padding: 22px 0 0 30px;
   display: grid;
   grid-template-columns: 294px 1fr;
   grid-template-rows: 1fr 1fr;
-  row-gap: 16px;
+  row-gap: 6px;
   column-gap: 18px;
-  align-items: center;
+  align-items: baseline;
 }
