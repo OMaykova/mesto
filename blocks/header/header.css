@@ -6,3 +6,10 @@
   border-bottom: 1px solid;
   border-color: rgba(84, 84, 84, .7);
 }
+@media screen and (max-width: 470px) {
+  .header {
+    width: 100%;
+    padding-top: 28px;
+    padding-bottom: 31px;
+  }
+}

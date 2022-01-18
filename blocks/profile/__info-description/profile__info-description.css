@@ -10,3 +10,14 @@
   text-overflow: ellipsis;
   align-self: flex-start;
 }
+@media screen and (max-width: 920px) {
+  .profile__info-description {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 470px) {
+  .profile__info-description {
+    font-size: 14px;
+    padding-left: 9%;
+  }
+}

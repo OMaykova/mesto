@@ -1,7 +1,8 @@
 .popup__description {
   border-style: none;
   width: 100%;
-  padding: 30px 0 13px;
+  margin-top: 30px;
+  padding-bottom: 13px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.21;

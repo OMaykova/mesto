@@ -3,3 +3,9 @@
   margin: 0;
   align-items: center;
 }
+@media screen and (max-width: 470px) {
+  .profile__card {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

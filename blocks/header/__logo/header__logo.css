@@ -2,3 +2,15 @@
   width: 142px;
   height: 33px;
 }
+@media screen and (max-width: 920px) {
+  .header__logo {
+    margin-left: 10%;
+  }
+}
+@media screen and (max-width: 470px) {
+  .header__logo {
+    width: 103.74px;
+    height: 24.4px;
+    margin-left: 8.4%;
+  }
+}

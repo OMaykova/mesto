@@ -9,9 +9,15 @@
   font-size: 18px;
   line-height: 1.22;
   color: #fff;
-  /* vertical-align: center; */
   text-align: center;
 }
 .popup__saveButton:hover {
   opacity: 0.8;
+}
+@media screen and (max-width: 660px) {
+  .popup__saveButton {
+    height: 46px;
+    margin-top: 45px;
+    font-size: 14px;
+  }
 }

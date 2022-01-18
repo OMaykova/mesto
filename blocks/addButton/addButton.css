@@ -5,13 +5,27 @@
   box-sizing: border-box;
   border-radius: 2px;
   background-color: #000;
-  position: absolute;
-  right: 0;
-  top: 75px;
   background-image: url(../../images/addButton.svg);
   background-repeat: no-repeat;
   background-position: center;
 }
 .addButton:hover {
   opacity: 0.6;
+}
+@media screen and (max-width: 724px) {
+  .addButton {
+    width: 50%;
+    margin-top: 36px;
+  }
+  @media screen and (max-width: 470px) {
+    .addButton {
+      width: 60%;
+      margin-top: 22px;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .addButton {
+    width: 88.125%;
+  }
 }
