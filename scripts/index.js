@@ -1,28 +1,25 @@
-const profileEditButton = document.querySelector('.editButton');
+const profileEditButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
-const popupCloseButton = document.querySelector('.popup__closeButton');
-const popupSaveButton = document.querySelector('.popup__saveButton');
+const popupCloseButton = document.querySelector('.popup__close-button');
 const profileName = document.querySelector('.profile__info-name');
-const popupName = document.querySelector('.popup__name');
+const popupName = document.querySelector('.popup__input_type_name');
 const profileDescription = document.querySelector('.profile__info-description');
-const popupDescription = document.querySelector('.popup__description');
-const form = document.querySelector('.popup__container');
-
-profileEditButton.addEventListener('click', function () {
-  popup.classList.add('popup__opened');
-  popupName.setAttribute('value', profileName.textContent);
-  popupDescription.setAttribute('value', profileDescription.textContent);
-});
-
-popupCloseButton.addEventListener('click', function() {
-  event.preventDefault();
-  popup.classList.remove('popup__opened');
-  form.reset();
-});
-
-form.addEventListener('submit', function() {
+const popupDescription = document.querySelector('.popup__input_type_description');
+const form = document.querySelector('.popup__edit-form');
+function openPopup () {
+  popup.classList.add('popup_display_opened');
+  popupName.value = profileName.textContent;
+  popupDescription.value = profileDescription.textContent;
+};
+function closePopup() {
+  popup.classList.remove('popup_display_opened');
+}
+function savePopup() {
   event.preventDefault();
   profileName.textContent = popupName.value;
   profileDescription.textContent = popupDescription.value;
-  popup.classList.remove('popup__opened');
-})
+  closePopup();
+}
+profileEditButton.addEventListener('click', openPopup);
+popupCloseButton.addEventListener('click', closePopup);
+form.addEventListener('submit', savePopup);

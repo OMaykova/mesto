@@ -1,4 +1,5 @@
 .profile__info {
+
   margin: 0;
   padding: 22px 0 0 30px;
   display: grid;
@@ -14,9 +15,10 @@
     column-gap: 14px;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .profile__info {
-    grid-template-columns: 1fr;
+    max-width: 230px;
+    padding-left: 0;
     column-gap: 10px;
   }
 }

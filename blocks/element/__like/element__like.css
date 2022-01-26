@@ -1,12 +1,15 @@
 .element__like {
   border-style: none;
+  background-color: #fff;
   width: 22px;
   min-height: 19px;
   background-image: url(../../../images/like.svg);
+  cursor: pointer;
 }
 .element__like:hover {
   opacity: .5;
 }
 .element__like:active {
   background-image: url(../../../images/like_active.svg);
+  opacity: 1;
 }
