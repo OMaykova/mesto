@@ -4,7 +4,8 @@
   border: 2px solid #FFFFFF;
   box-sizing: border-box;
   border-radius: 2px;
-  background-color: rgba(255, 255, 255, 0.01);
+  background-color: rgb(255, 255, 255);
+  background: transparent;
   background-image: url(../../../images/addButton.svg);
   background-repeat: no-repeat;
   background-position: center;
