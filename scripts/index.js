@@ -2,6 +2,7 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 const cardsAddButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAddCards = document.querySelector('.popup_type_add');
+const popupOpenCard = document.querySelector('.popup_type_card');
 const closeButton = document.querySelectorAll('.popup__close-button');
 const profileName = document.querySelector('.profile__info-name');
 const popupName = document.querySelector('.popup__input_type_name');
@@ -11,6 +12,8 @@ const formEdit = document.querySelector('.popup__edit-form_type_edit');
 const formAdd = document.querySelector('.popup__edit-form_type_add');
 const popupAddInputTitle = document.querySelector('.popup__input_type_caption-title');
 const popupAddInputUrl = document.querySelector('.popup__input_type_url');
+const popupCardImage = document.querySelector('.popup__card-image');
+const popupCardTitle = document.querySelector('.popup__card-title');
 const initialCards = [
   {
     name: 'Архыз',
@@ -94,6 +97,7 @@ function savePopup(popup) {
 function addListener(el) {
   el.querySelector('.element__delete').addEventListener('click', handleDelete);
   el.querySelector('.element__like').addEventListener('click', handleLike);
+  el.querySelector('.element__image').addEventListener('click', handleCardOpen);
 }
 // функция удаления карточки
 function handleDelete(event) {
@@ -104,7 +108,13 @@ function handleDelete(event) {
 function handleLike(event) {
   const like = event.target.closest('.element').querySelector('.element__like');
   like.classList.toggle('element__like_active')
+}
 
+function handleCardOpen(event) {
+  popupCardImage.src = event.target.src;
+  popupCardTitle.textContent = event.target.closest('.element').querySelector('.element__caption-title').textContent;
+  popupCardImage.alt = event.target.alt;
+  openPopup(popupOpenCard);
 }
 
 // вызов: открытие popup для редактирования
