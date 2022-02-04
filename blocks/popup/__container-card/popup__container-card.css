@@ -1,0 +1,12 @@
+.popup__container-card {
+  margin: 0 auto;
+  /* max-width: 860px;
+  height: 540px; */
+  position: relative;
+}
+/* @media screen and (max-width: 660px) {
+  .popup__container-card {
+    width: 240px;
+    height: 299px;
+  }
+} */
