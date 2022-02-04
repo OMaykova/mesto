@@ -110,12 +110,16 @@ function handleLike(event) {
   like.classList.toggle('element__like_active')
 }
 
+// функция открытия popup с картинкой
 function handleCardOpen(event) {
   popupCardImage.src = event.target.src;
   popupCardTitle.textContent = event.target.closest('.element').querySelector('.element__caption-title').textContent;
   popupCardImage.alt = event.target.alt;
   openPopup(popupOpenCard);
 }
+
+// вызов: создание карточек из массива
+render(initialCards);
 
 // вызов: открытие popup для редактирования
 profileEditButton.addEventListener('click', function () {
@@ -135,9 +139,6 @@ formEdit.addEventListener('submit', function() {
   savePopup(popupEdit);
 });
 
-// вызов: создание карточек из массива
-render(initialCards);
-
 // вызов: открытие popup для добавления карточек
 cardsAddButton.addEventListener('click', function () {
   openPopup (popupAddCards);
@@ -150,4 +151,3 @@ formAdd.addEventListener('submit', function() {
   renderUserCard(userData);
   closePopup(popupAddCards);
 });
-
