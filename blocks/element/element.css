@@ -2,6 +2,9 @@
   width: 282px;
   background-color: #fff;
   border-radius: 10px;
+  box-sizing: border-box;
+  object-fit: cover;
+  position: relative;
 }
 @media screen and (max-width: 724px) {
   .element {

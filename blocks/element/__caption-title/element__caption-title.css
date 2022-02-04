@@ -1,8 +1,12 @@
 .element__caption-title {
+  max-width: 210px;
   margin: 0;
   font-size: 24px;
   line-height: 29px;
   font-weight: 900;
   color: #000;
   align-self: baseline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

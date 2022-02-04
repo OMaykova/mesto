@@ -27,65 +27,44 @@
         <button class="profile__add-button" type="button" title="Добавить" aria-label="Кнопка Добавить"></button>
       </section>
       <section class="elements">
-        <article class="element">
-          <img class="element__image" src="images/karachaevo.jpg" alt="Фотография Карачаевска">
-          <div class="element__caption">
-            <h3 class="element__caption-title">Карачаевск</h3>
-            <button class="element__like" type="button" title="Нравится" aria-label="Кнопка нравится"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/elbrus.jpg" alt="Фотография Эльбруса">
-          <div class="element__caption">
-            <h3 class="element__caption-title">Гора Эльбрус</h3>
-            <button class="element__like" type="button" title="Нравится" aria-label="Кнопка нравится"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/dombay.jpg" alt="Фотография Домбая">
-          <div class="element__caption">
-            <h3 class="element__caption-title">Домбай</h3>
-            <button class="element__like" type="button" title="Нравится" aria-label="Кнопка нравится"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/karachaevo.jpg" alt="Фотография Карачаевска">
-          <div class="element__caption">
-            <h3 class="element__caption-title">Карачаевск</h3>
-            <button class="element__like" type="button" title="Нравится" aria-label="Кнопка нравится"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/elbrus.jpg" alt="Фотография Эльбруса">
-          <div class="element__caption">
-            <h3 class="element__caption-title">Гора Эльбрус</h3>
-            <button class="element__like" type="button" title="Нравится" aria-label="Кнопка нравится"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="images/dombay.jpg" alt="Фотография Домбая">
-          <div class="element__caption">
-            <h3 class="element__caption-title">Домбай</h3>
-            <button class="element__like" type="button" title="Нравится" aria-label="Кнопка нравится"></button>
-          </div>
-        </article>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_edit">
       <div class="popup__container">
         <button class="popup__close-button" type="button" title="Закрыть" aria-label="Кнопка Закрыть"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__edit-form" name="popupEditForm">
+        <form class="popup__edit-form popup__edit-form_type_edit" name="popupEditForm">
           <input class="popup__input popup__input_type_name" type="text" name="name" maxlength="30" value="">
           <input class="popup__input popup__input_type_description" type="text" name="description" maxlength="30" value="">
           <button class="popup__save-button" type="submit" title="Сохранить" aria-label="Кнопка Сохранить">Сохранить</button>
         </form>
       </div>
     </div>
+    <div class="popup popup_type_add">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" title="Закрыть" aria-label="Кнопка Закрыть"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form class="popup__edit-form popup__edit-form_type_add" name="popupEditForm">
+          <input class="popup__input popup__input_type_caption-title" type="text" name="name" value="" placeholder="Название">
+          <input class="popup__input popup__input_type_url" type="text" name="description" value="" placeholder="Ссылка на картинку" >
+          <button class="popup__save-button" type="submit" title="Создать" aria-label="Кнопка Создать">Создать</button>
+        </form>
+      </div>
+    </div>
   </div>
+  <template class="element_template">
+    <article class="element">
+      <button class="element__delete" type="button" title="Удалить" aria-label="Кнопка удаления"></button>
+      <img class="element__image" src="" alt="">
+      <div class="element__caption">
+        <h3 class="element__caption-title"></h3>
+        <button class="element__like" type="button" title="Нравится" aria-label="Кнопка нравится"></button>
+      </div>
+    </article>
+  </template>
   <script src="scripts/index.js"></script>
 </body>
 </html>
