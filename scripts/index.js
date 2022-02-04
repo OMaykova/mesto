@@ -141,6 +141,8 @@ formEdit.addEventListener('submit', function() {
 
 // вызов: открытие popup для добавления карточек
 cardsAddButton.addEventListener('click', function () {
+  popupAddInputTitle.value = '';
+  popupAddInputUrl.value = '';
   openPopup (popupAddCards);
 });
 
