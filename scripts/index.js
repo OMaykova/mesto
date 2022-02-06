@@ -3,7 +3,7 @@ const cardsAddButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAddCards = document.querySelector('.popup_type_add');
 const popupOpenCard = document.querySelector('.popup_type_card');
-const closeButton = document.querySelectorAll('.popup__close-button');
+const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const profileName = document.querySelector('.profile__info-name');
 const popupName = document.querySelector('.popup__input_type_name');
 const profileDescription = document.querySelector('.profile__info-description');
@@ -14,32 +14,7 @@ const popupAddInputTitle = document.querySelector('.popup__input_type_caption-ti
 const popupAddInputUrl = document.querySelector('.popup__input_type_url');
 const popupCardImage = document.querySelector('.popup__card-image');
 const popupCardTitle = document.querySelector('.popup__card-title');
-const initialCards = [
-  {
-    name: 'Волгодонск',
-    link: 'https://kartarf.ru/images/heritage/1080/0/6203.jpg'
-  },
-  {
-    name: 'Томск',
-    link: 'https://cont.ws/uploads/pic/2019/6/%D0%A5%D0%B0%D1%84%D0%B8%D0%B7%D0%BE%D0%B2%205%20%281%29.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import {initialCards} from './modules/cards.js';
 const elements = document.querySelector('.elements');
 const templateElement = document.querySelector('.element_template').content;
 
@@ -86,7 +61,7 @@ function closePopup(event) {
   event.classList.remove('popup_opened');
 };
 // функция сохранения данных из popup для редактирования профиля
-function savePopup(popup) {
+function submitProfileForm(popup) {
   event.preventDefault();
   profileName.textContent = popupName.value;
   profileDescription.textContent = popupDescription.value;
@@ -129,14 +104,14 @@ profileEditButton.addEventListener('click', function () {
 });
 
 // вызов: закрытие любого popup
-closeButton.forEach((btn) => {
+popupCloseButtons.forEach((btn) => {
   btn.addEventListener('click', function() {
     closePopup(btn.closest('.popup'))
   });
 });
 // вызов: сохранение данных из popup для редактирования
 formEdit.addEventListener('submit', function() {
-  savePopup(popupEdit);
+  submitProfileForm(popupEdit);
 });
 
 // вызов: открытие popup для добавления карточек
