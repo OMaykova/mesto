@@ -36,9 +36,11 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button" title="Закрыть" aria-label="Кнопка Закрыть"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__edit-form popup__edit-form_type_edit" name="popupEditForm">
-          <input class="popup__input popup__input_type_name" type="text" name="name" maxlength="30" value="">
-          <input class="popup__input popup__input_type_description" type="text" name="description" maxlength="30" value="">
+        <form class="popup__form popup__form_type_edit" name="popupEditForm" novalidate>
+          <input id="name-input" class="popup__input popup__input_type_name" type="text" name="name" minlength="2" maxlength="40" value="" required>
+          <span class="name-input-error popup__input-error"></span>
+          <input id="description-input" class="popup__input popup__input_type_description" type="text" name="description" minlength="2" maxlength="200" value="" required>
+          <span class="description-input-error popup__input-error"></span>
           <button class="popup__save-button" type="submit" title="Сохранить" aria-label="Кнопка Сохранить">Сохранить</button>
         </form>
       </div>
@@ -47,9 +49,11 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button" title="Закрыть" aria-label="Кнопка Закрыть"></button>
         <h3 class="popup__title">Новое место</h3>
-        <form class="popup__edit-form popup__edit-form_type_add" name="popupAddForm">
-          <input class="popup__input popup__input_type_caption-title" type="text" name="name" value="" placeholder="Название">
-          <input class="popup__input popup__input_type_url" type="text" name="description" value="" placeholder="Ссылка на картинку" >
+        <form class="popup__form popup__form_type_add" name="popupAddForm" novalidate>
+          <input id="caption-title-input" class="popup__input popup__input_type_caption-title" type="text" name="caption-title" minlength="2" maxlength="30" value="" placeholder="Название" required>
+          <span class="caption-title-input-error popup__input-error"></span>
+          <input id="url-input" class="popup__input popup__input_type_url" type="url" name="url" value="" placeholder="Ссылка на картинку" required>
+          <span class="url-input-error popup__input-error"></span>
           <button class="popup__save-button" type="submit" title="Создать" aria-label="Кнопка Создать">Создать</button>
         </form>
       </div>

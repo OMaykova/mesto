@@ -8,8 +8,8 @@ const profileName = document.querySelector('.profile__info-name');
 const popupName = document.querySelector('.popup__input_type_name');
 const profileDescription = document.querySelector('.profile__info-description');
 const popupDescription = document.querySelector('.popup__input_type_description');
-const formEdit = document.querySelector('.popup__edit-form_type_edit');
-const formAdd = document.querySelector('.popup__edit-form_type_add');
+const formEdit = document.querySelector('.popup__form_type_edit');
+const formAdd = document.querySelector('.popup__form_type_add');
 const popupAddInputTitle = document.querySelector('.popup__input_type_caption-title');
 const popupAddInputUrl = document.querySelector('.popup__input_type_url');
 const popupCardImage = document.querySelector('.popup__card-image');
@@ -17,6 +17,8 @@ const popupCardTitle = document.querySelector('.popup__card-title');
 import {initialCards} from './modules/cards.js';
 const elements = document.querySelector('.elements');
 const templateElement = document.querySelector('.element_template').content;
+
+
 
 // функция добавления карточек elements в HTML
 function render(el) {
@@ -92,6 +94,74 @@ function handleCardOpen(event) {
   popupCardImage.alt = event.target.alt;
   openPopup(popupOpenCard);
 }
+
+
+
+
+
+
+
+//функция добавления класса с ошибкой
+  const showInputError = ((formElement, inputElement, errorMessage) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.add('popup__input_type_error');
+    errorElement.textContent = errorMessage;
+    // errorElement.classList.add('popup__input-error_active');
+})
+
+// функция удаления класса с ошибкой
+  const hideInputError = ((formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove('popup__input_type_error');
+    // errorElement.classList.remove('popup__input-error_active');
+    errorElement.textContent = '';
+});
+
+// функция проверки валидности поля
+const isValid = ((formElement, inputElement) => {
+    if (inputElement.validity.valid) {
+      hideInputError(formElement, inputElement);
+        }
+    else {
+      showInputError(formElement, inputElement, inputElement.validationMessage);
+  }
+})
+
+// функция добавления слушателя всем полям формы
+const setFormEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+      isValid(formElement, inputElement)
+    });
+  });
+};
+
+function enableValidation() {
+  const formElements = Array.from(document.querySelectorAll('.popup__form'));
+
+  formElements.forEach((formElement) => {
+  formElement.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+  setFormEventListeners(formElement);
+//   const inputList = formElement.querySelectorAll('.popup__input');
+//    inputList.forEach(inputElement => {
+//     inputElement.addEventListener('input', () => isValid(formElement, inputElement))
+// });
+});
+}
+enableValidation();
+
+
+
+
+
+
+
+
+
+
 
 // вызов: создание карточек из массива
 render(initialCards);
