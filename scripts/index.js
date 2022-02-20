@@ -19,7 +19,6 @@ const elements = document.querySelector('.elements');
 const templateElement = document.querySelector('.element_template').content;
 
 
-
 // функция добавления карточек elements в HTML
 function render(el) {
   el.forEach((card) => {
@@ -55,12 +54,12 @@ function createUserData(){
 }
 
 // функция открытия любого popup
-function openPopup (event) {
-  event.classList.add('popup_opened');
+function openPopup (el) {
+  el.classList.add('popup_opened');
 };
 // функция закрытия любого popup
-function closePopup(event) {
-  event.classList.remove('popup_opened');
+function closePopup(el) {
+  el.classList.remove('popup_opened');
 };
 // функция сохранения данных из popup для редактирования профиля
 function submitProfileForm(popup) {
@@ -115,7 +114,7 @@ function handleCardOpen(event) {
     inputElement.classList.remove('popup__input_type_error');
     // errorElement.classList.remove('popup__input-error_active');
     errorElement.textContent = '';
-});
+})
 
 // функция проверки валидности поля
 const isValid = ((formElement, inputElement) => {
@@ -127,36 +126,57 @@ const isValid = ((formElement, inputElement) => {
   }
 })
 
+// функция активации кнопки после проверки валидности формы
+const isButtonValid = (formElement, button) => {
+  if (formElement.checkValidity()) {
+    button.removeAttribute('disabled');
+    button.classList.remove('popup__save-button_disabled');
+  } else {
+    button.setAttribute('disabled', '');
+    button.classList.add('popup__save-button_disabled');
+  }
+}
+
+
 // функция добавления слушателя всем полям формы
-const setFormEventListeners = (formElement) => {
+function setFormEventListeners(formElement, button) {
   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement)
+      isValid(formElement, inputElement);
+      isButtonValid(formElement, button);
     });
   });
-};
+}
 
+// функция включения проверки у всех форм
 function enableValidation() {
   const formElements = Array.from(document.querySelectorAll('.popup__form'));
-
   formElements.forEach((formElement) => {
-  formElement.addEventListener('submit', (event) => {
-    event.preventDefault();
-  });
-  setFormEventListeners(formElement);
-//   const inputList = formElement.querySelectorAll('.popup__input');
-//    inputList.forEach(inputElement => {
-//     inputElement.addEventListener('input', () => isValid(formElement, inputElement))
-// });
+    const button = formElement.querySelector('.popup__save-button');
+    formElement.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+  isButtonValid(formElement, button);
+  setFormEventListeners(formElement, button);
 });
 }
 enableValidation();
 
 
+// вызов: закрытие popup по клику на overlay
+function setOverlayClosePopup() {
+  const popupList = Array.from(document.querySelectorAll('.popup'));
+  popupList.forEach((popup) => {
+    popup.addEventListener('click', function(event) {
+      if (event.target === event.currentTarget) {
+      closePopup(popup);
+      };
+});
+})
+}
 
-
-
+setOverlayClosePopup();
 
 
 
