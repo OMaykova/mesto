@@ -94,77 +94,7 @@ function handleCardOpen(event) {
   openPopup(popupOpenCard);
 }
 
-
-
-
-
-
-
-//функция добавления класса с ошибкой
-  const showInputError = ((formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_type_error');
-    errorElement.textContent = errorMessage;
-    // errorElement.classList.add('popup__input-error_active');
-})
-
-// функция удаления класса с ошибкой
-  const hideInputError = ((formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    // errorElement.classList.remove('popup__input-error_active');
-    errorElement.textContent = '';
-})
-
-// функция проверки валидности поля
-const isValid = ((formElement, inputElement) => {
-    if (inputElement.validity.valid) {
-      hideInputError(formElement, inputElement);
-        }
-    else {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
-  }
-})
-
-// функция активации кнопки после проверки валидности формы
-const isButtonValid = (formElement, button) => {
-  if (formElement.checkValidity()) {
-    button.removeAttribute('disabled');
-    button.classList.remove('popup__save-button_disabled');
-  } else {
-    button.setAttribute('disabled', '');
-    button.classList.add('popup__save-button_disabled');
-  }
-}
-
-
-// функция добавления слушателя всем полям формы
-function setFormEventListeners(formElement, button) {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      isButtonValid(formElement, button);
-    });
-  });
-}
-
-// функция включения проверки у всех форм
-function enableValidation() {
-  const formElements = Array.from(document.querySelectorAll('.popup__form'));
-  formElements.forEach((formElement) => {
-    const button = formElement.querySelector('.popup__save-button');
-    formElement.addEventListener('submit', (event) => {
-      event.preventDefault();
-    });
-  isButtonValid(formElement, button);
-  setFormEventListeners(formElement, button);
-});
-}
-enableValidation();
-
-
-// вызов: закрытие popup по клику на overlay
+// Функция закрытия popup по клику на overlay и нажатию Esc
 function setOverlayClosePopup() {
   const popupList = Array.from(document.querySelectorAll('.popup'));
   popupList.forEach((popup) => {
@@ -172,16 +102,17 @@ function setOverlayClosePopup() {
       if (event.target === event.currentTarget) {
       closePopup(popup);
       };
-});
-})
+    });
+    document.addEventListener('keydown', function(event) {
+      if (event.keyCode === 27) {
+      closePopup(popup);
+      }
+    });
+  });
 }
 
+// Вызов: закрытие popup по клику на overlay
 setOverlayClosePopup();
-
-
-
-
-
 
 // вызов: создание карточек из массива
 render(initialCards);
@@ -191,6 +122,9 @@ profileEditButton.addEventListener('click', function () {
   openPopup (popupEdit);
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
+  const button = popupEdit.querySelector('.popup__save-button');
+  button.classList.remove('popup__save-button_disabled');
+  button.removeAttribute('disabled');
 });
 
 // вызов: закрытие любого popup
@@ -217,4 +151,4 @@ formAdd.addEventListener('submit', function() {
   const userData = createUserData();
   renderUserCard(userData);
   closePopup(popupAddCards);
-});
+})
