@@ -37,9 +37,9 @@
         <button class="popup__close-button" type="button" title="Закрыть" aria-label="Кнопка Закрыть"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form popup__form_type_edit" name="popupEditForm" novalidate>
-          <input id="name-input" class="popup__input popup__input_type_name" type="text" name="name" minlength="2" maxlength="40" value="" required>
+          <input id="name-input" class="popup__input popup__input_type_name" type="text" name="name" minlength="2" maxlength="40" value="" placeholder="Имя фамилия" required>
           <span class="name-input-error popup__error popup__error_visible"></span>
-          <input id="description-input" class="popup__input popup__input_type_description" type="text" name="description" minlength="2" maxlength="200" value="" required>
+          <input id="description-input" class="popup__input popup__input_type_description" type="text" name="description" minlength="2" maxlength="200" value="" placeholder="Профессия" required>
           <span class="description-input-error popup__error popup__error_visible"></span>
           <button class="popup__save-button" type="submit" title="Сохранить" aria-label="Кнопка Сохранить">Сохранить</button>
         </form>
@@ -78,7 +78,6 @@
       </div>
     </article>
   </template>
-  <script src="scripts/index.js" type="module"></script>
-  <script src="scripts/validate.js "></script>
+<script src="scripts/index.js" type="module"></script>
 </body>
 </html>
