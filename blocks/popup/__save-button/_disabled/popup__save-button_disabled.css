@@ -6,4 +6,5 @@
 }
 .popup__save-button:hover {
   opacity: 0.2;
+  cursor: default;
 }

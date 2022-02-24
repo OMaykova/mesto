@@ -1,6 +1,6 @@
 import {initialCards} from './utils/cards.js';
 import {configValidation} from './utils/constants.js';
-import {enableValidation, enabledButton} from './utils/validate.js';
+import {enableValidation} from './utils/validate.js';
 const profileEditButton = document.querySelector('.profile__edit-button');
 const cardsAddButton = document.querySelector('.profile__add-button');
 const popupEditProfile = document.querySelector('.popup_type_edit');
@@ -78,7 +78,8 @@ function submitProfileForm(popup) {
 // функция добавления обработчика
 function addListener(el) {
   el.querySelector('.element__delete').addEventListener('click', handleDelete);
-  el.querySelector('.element__like').addEventListener('click', handleLike);
+  const likeButton = el.querySelector('.element__like');
+  likeButton.addEventListener('click', () => handleLike(likeButton));
   el.querySelector('.element__image').addEventListener('click', handleCardOpen);
 }
 // функция удаления карточки
@@ -87,9 +88,9 @@ function handleDelete(event) {
 }
 
 // функция обработки нажатия лайка
-function handleLike(event) {
-  const like = event.target.closest('.element').querySelector('.element__like');
-  like.classList.toggle('element__like_active')
+function handleLike(likeButton) {
+  likeButton.closest('.element').querySelector('.element__like');
+  likeButton.classList.toggle('element__like_active')
 }
 
 // функция открытия popup с картинкой
@@ -116,13 +117,9 @@ function handlePopupProfileEditOpened () {
   openPopup (popupEditProfile);
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
-  const button = popupEditProfile.querySelector('.popup__save-button');
-  // // button.classList.remove('popup__save-button_disabled');
-  // // button.removeAttribute('disabled');
-  enabledButton(configValidation, button);
 }
 
-// Функция - обработчик сохранениz данных из popup добавления карточек
+// Функция - обработчик сохранения данных из popup добавления карточек
 function handleFormAddCard() {
   event.preventDefault();
   const userData = createUserData();
