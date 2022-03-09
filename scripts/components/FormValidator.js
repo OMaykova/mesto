@@ -72,7 +72,7 @@ export class FormValidator {
     this._setFormEventListeners();
   }
 
-  _resetErrors() {
+  resetErrors() {
     this._form.reset();
     this._inputList.forEach((inputElement) => {
       if (inputElement.classList.contains(this._settings.inputErrorClass)) {

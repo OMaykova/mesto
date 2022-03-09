@@ -1,5 +1,5 @@
-import {openPopup} from "../index.js"
-import {popupOpenCard} from "../index.js"
+import {openPopup} from '../index.js';
+import {popupOpenCard} from '../utils/constants.js';
 export class Card {
   constructor(data, selector) {
     this._name = data.name;
@@ -7,9 +7,13 @@ export class Card {
     this._selector = selector;
   }
 
+  // функция клонирования template заготовки
+  _getTemplate() {
+    this._newCard = document.querySelector(this._selector).content.cloneNode(true);
+  }
   //функция создания карточки из template
   createCard() {
-    this._newCard = document.querySelector(this._selector).content.cloneNode(true);
+    this._getTemplate();
     this._elementImage = this._newCard.querySelector('.element__image');
     this._elementImage.src = this._link;
     this._elementImage.alt = `Фотография ${this._name}`;
@@ -38,7 +42,6 @@ export class Card {
 
   // функция обработки нажатия лайка
   _handleLike() {
-    console.log(event.target);
     event.target.classList.toggle('element__like_active')
   }
 

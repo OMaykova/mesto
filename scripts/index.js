@@ -1,22 +1,8 @@
+import {configValidation, profileEditButton, cardsAddButton, popupEditProfile, popupAddCards, popupOpenCard, popupCloseButtons,
+  profileName, popupName,  profileDescription, popupDescription, formEditProfile, formAddCard, popupAddInputTitle, popupAddInputUrl, elements} from './utils/constants.js';
 import {initialCards} from './utils/cards.js';
-import {configValidation} from './utils/constants.js';
 import {FormValidator} from './components/FormValidator.js';
 import {Card} from './components/Card.js';
-const profileEditButton = document.querySelector('.profile__edit-button');
-const cardsAddButton = document.querySelector('.profile__add-button');
-const popupEditProfile = document.querySelector('.popup_type_edit');
-const popupAddCards = document.querySelector('.popup_type_add');
-export const popupOpenCard = document.querySelector('.popup_type_card');
-const popupCloseButtons = document.querySelectorAll('.popup__close-button');
-const profileName = document.querySelector('.profile__info-name');
-const popupName = document.querySelector('.popup__input_type_name');
-const profileDescription = document.querySelector('.profile__info-description');
-const popupDescription = document.querySelector('.popup__input_type_description');
-const formEditProfile = document.querySelector('.popup__form_type_edit');
-const formAddCard = document.querySelector('.popup__form_type_add');
-const popupAddInputTitle = document.querySelector('.popup__input_type_caption-title');
-const popupAddInputUrl = document.querySelector('.popup__input_type_url');
-const elements = document.querySelector('.elements');
 const formEditProfileValidator = new FormValidator(configValidation, formEditProfile);
 const formAddCardValidator = new FormValidator(configValidation, formAddCard);
 
@@ -57,7 +43,7 @@ export function openPopup (el) {
 function closePopup(el) {
   el.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscape);
-  formAddCardValidator._resetErrors();
+  formAddCardValidator.resetErrors();
 };
 // функция сохранения данных из popup для редактирования профиля
 function submitProfileForm(popup) {
