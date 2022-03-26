@@ -6,18 +6,18 @@
   <meta name="description" content="Проектная работа №4 в рамках обучения на Яндекс.Практикум">
   <meta name="keywords" content="место, путешествия, россия, фотографии">
   <meta name="author" content="Ольга Майкова">
-  <link rel="stylesheet" href="pages/index.css">
+  <!-- <link rel="stylesheet" href="pages/index.css"> -->
   <title>Mesto: делитесь фотографиями своих путешествий</title>
 </head>
 <body>
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="images/logoMesto.svg" alt="Логотип сайта с названием Место Россия">
+      <img class="header__logo" src="<%=require('./images/logoMesto.svg')%>" alt="Логотип сайта с названием Место Россия">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__card">
-          <img class="profile__avatar" src="images/kusto.jpg" alt="Фотография Жак-Ив Кусто">
+          <img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="Фотография Жак-Ив Кусто">
           <div class="profile__info">
             <h1 class="profile__info-name">Жак-Ив Кусто</h1>
             <button class="profile__edit-button" type="button" title="Редактировать" aria-label="Кнопка Редактировать"></button>
@@ -78,6 +78,6 @@
       </div>
     </article>
   </template>
-<script src="scripts/index.js" type="module"></script>
+<!-- <script src="scripts/index.js" type="module"></script> -->
 </body>
 </html>
