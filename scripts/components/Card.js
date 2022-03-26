@@ -1,10 +1,10 @@
-import {openPopup} from '../index.js';
-import {popupOpenCard} from '../utils/constants.js';
 export class Card {
-  constructor(data, selector) {
-    this._name = data.name;
+  constructor({data, handleCardClick}, selector) {
+    this._name = data.caption;
     this._link = data.link;
     this._selector = selector;
+    this._handleCardClick = handleCardClick;
+    this.popupCardImage = document.querySelector('.popup__card-image');
   }
 
   // функция клонирования template заготовки
@@ -31,8 +31,8 @@ export class Card {
       this._handleLike();
     });
     this._newCard.querySelector('.element__image').addEventListener('click', () => {
-      this._handleCardOpen();
-    });
+      this._handleCardClick(this._name, this._link);
+    })
   }
 
   // функция удаления карточки
@@ -43,14 +43,5 @@ export class Card {
   // функция обработки нажатия лайка
   _handleLike() {
     event.target.classList.toggle('element__like_active')
-  }
-
-  // функция открытия popup с картинкой
-  _handleCardOpen() {
-    const popupCardImage = document.querySelector('.popup__card-image');
-    popupCardImage.src = this._link;
-    document.querySelector('.popup__card-title').textContent = this._name;
-    popupCardImage.alt = this._name;
-    openPopup(popupOpenCard);
   }
 }

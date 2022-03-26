@@ -1,0 +1,36 @@
+{
+  "name": "mesto_maykova",
+  "version": "0.0.1",
+  "description": "''",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dolka84/mesto.git"
+  },
+  "keywords": [
+    "photo",
+    "mesto"
+  ],
+  "author": "Olga Maykova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dolka84/mesto/issues"
+  },
+  "homepage": "https://github.com/Dolka84/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "html-plugin": "^0.1.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "core-js": "^3.21.1"
+  }
+}

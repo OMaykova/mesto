@@ -6,6 +6,10 @@ const configValidation = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
 }
+const userConfig = {
+  nameSelector: '.profile__info-name',
+  descriptionSelector: '.profile__info-description'
+};
 const profileEditButton = document.querySelector('.profile__edit-button');
 const cardsAddButton = document.querySelector('.profile__add-button');
 const popupEditProfile = document.querySelector('.popup_type_edit');
@@ -21,5 +25,5 @@ const formAddCard = document.querySelector('.popup__form_type_add');
 const popupAddInputTitle = document.querySelector('.popup__input_type_caption-title');
 const popupAddInputUrl = document.querySelector('.popup__input_type_url');
 const elements = document.querySelector('.elements');
-export {configValidation, profileEditButton, cardsAddButton, popupEditProfile, popupAddCards, popupOpenCard, popupCloseButtons,
+export { userConfig, configValidation, profileEditButton, cardsAddButton, popupEditProfile, popupAddCards, popupOpenCard, popupCloseButtons,
   profileName, popupName,  profileDescription, popupDescription, formEditProfile, formAddCard, popupAddInputTitle, popupAddInputUrl, elements};
