@@ -22,15 +22,11 @@ export class PopupWithForm extends Popup {
   // добавление слушателей (кнопка закрытия popup, клик по overlay, отправка формы)
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener('submit', this._submitForm.bind(this));
-  }
-  _removeEventListeners() {
-    this._form.removeEventListener('submit', this._submitForm);
+    this._form.addEventListener('submit', (evt) => this._submitForm(evt));
   }
   // закрытие popup с формой
   close() {
     super.close();
     this._form.reset();
-    this._removeEventListeners();
   }
 }

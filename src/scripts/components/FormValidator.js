@@ -34,7 +34,7 @@ export class FormValidator {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._isValid(inputElement);
-        this._toggleButtonState();
+        this.toggleButtonState();
     });
   });
   }
@@ -52,7 +52,7 @@ export class FormValidator {
   }
 
 // функция валидации кнопки после проверки валидности формы
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._form.checkValidity()) {
       this._enabledButton();
     } else {
@@ -68,7 +68,7 @@ export class FormValidator {
     this._form.addEventListener('reset', () => {
       this._disabledButton();
     });
-    this._toggleButtonState();
+    this.toggleButtonState();
     this._setFormEventListeners();
   }
 

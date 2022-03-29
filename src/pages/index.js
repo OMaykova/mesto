@@ -1,28 +1,34 @@
 import {userConfig, configValidation, profileEditButton, cardsAddButton, popupEditProfile, popupAddCards, popupOpenCard,
-   popupName, popupDescription, formEditProfile, formAddCard} from './utils/constants.js';
-import {initialCards} from './utils/cards.js';
-import {FormValidator} from './components/FormValidator.js';
-import {Card} from './components/Card.js';
-import {Section} from './components/Section.js';
-import { PopupWithForm } from './components/PopupWithForm.js';
-import { PopupWithImage} from './components/PopupWithImage.js';
-import { UserInfo } from './components/UserInfo.js';
+   popupName, popupDescription, formEditProfile, formAddCard} from '../scripts/utils/constants.js';
+import {initialCards} from '../scripts/utils/cards.js';
+import {FormValidator} from '../scripts/components/FormValidator.js';
+import {Card} from '../scripts/components/Card.js';
+import {Section} from '../scripts/components/Section.js';
+import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
+import { PopupWithImage} from '../scripts/components/PopupWithImage.js';
+import { UserInfo } from '../scripts/components/UserInfo.js';
 import '../pages/index.css';
 
 // Создание класса popup с картинкой
 const popUpWithImg = new PopupWithImage(popupOpenCard);
 
+// Инициализация класса Card
+function createClassCard (data) {
+  const card = new Card({
+    data,
+    handleCardClick: (caption, link) => {
+      popUpWithImg.open(caption, link)
+    }
+  }, '.element_template');
+  const cardElement = card.createCard();
+  return cardElement;
+}
+
 // Создание класса карточек галереи
 const initialCardList = new Section({
   data: initialCards,
   renderer: (el) => {
-    const card = new Card({
-      data: el,
-      handleCardClick: (caption, link) => {
-        popUpWithImg.open(caption, link)
-      }
-    }, '.element_template');
-    const cardElement = card.createCard();
+    const cardElement = createClassCard(el);
     initialCardList.addItem(cardElement);
   },
 }, '.elements');
@@ -31,8 +37,8 @@ const initialCardList = new Section({
 const popupAddUserCard = new PopupWithForm({
   popupSelector: popupAddCards,
   handleFormSubmit: (data) => {
-    // const userData = createUserData();
-    renderUserCard(data);
+    const cardElement = createClassCard(data);
+    initialCardList.addUserItem(cardElement);
     popupAddUserCard.close();
   }
 })
@@ -49,18 +55,6 @@ const popupEdit = new PopupWithForm({
     popupEdit.close();
   }
 })
-
-// Функция добавления пользовательской карточки в elements в HTML
-function renderUserCard(data) {
-  const card = new Card({
-    data: data,
-    handleCardClick: (caption, link) => {
-      popUpWithImg.open(caption, link)
-    }
-  }, '.element_template');
-  const cardElement = card.createCard();
-  initialCardList.addUserItem(cardElement);
-}
 
 // Валидация формы профиля
 const formEditProfileValidator = new FormValidator(configValidation, formEditProfile);
@@ -79,17 +73,17 @@ popupEdit.setEventListeners();
 
 // Добавление слушателя кнопке редактирования профиля
 profileEditButton.addEventListener('click', () => {
+  formEditProfileValidator.resetErrors();
   const { userName, description } = userInfo.getUserInfo();
   popupName.value = userName;
   popupDescription.value = description;
-  formEditProfileValidator._toggleButtonState();
-  formEditProfileValidator.resetErrors();
+  formEditProfileValidator.toggleButtonState();
   popupEdit.open();
 })
 
 // Добавление слушателя кнопке создания новой карточки
 cardsAddButton.addEventListener('click', () => {
-  formAddCardValidator._toggleButtonState();
+  formAddCardValidator.toggleButtonState();
   formAddCardValidator.resetErrors();
   popupAddUserCard.open();
 })

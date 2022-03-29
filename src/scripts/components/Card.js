@@ -4,12 +4,11 @@ export class Card {
     this._link = data.link;
     this._selector = selector;
     this._handleCardClick = handleCardClick;
-    this.popupCardImage = document.querySelector('.popup__card-image');
   }
 
   // функция клонирования template заготовки
   _getTemplate() {
-    this._newCard = document.querySelector(this._selector).content.cloneNode(true);
+    this._newCard = document.querySelector(this._selector).content.querySelector('.element').cloneNode(true);
   }
   //функция создания карточки из template
   createCard() {
@@ -18,16 +17,18 @@ export class Card {
     this._elementImage.src = this._link;
     this._elementImage.alt = `Фотография ${this._name}`;
     this._newCard.querySelector('.element__caption-title').textContent = this._name;
+    this._likeButton = this._newCard.querySelector('.element__like');
+    this._deleteButton = this._newCard.querySelector('.element__delete');
     this._addListener();
     return this._newCard;
   }
 
   // функция добавления обработчика
   _addListener() {
-    this._newCard.querySelector('.element__delete').addEventListener('click', () => {
+    this._deleteButton.addEventListener('click', () => {
       this._handleDelete();
     });
-    this._newCard.querySelector('.element__like').addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._handleLike();
     });
     this._newCard.querySelector('.element__image').addEventListener('click', () => {
@@ -37,11 +38,12 @@ export class Card {
 
   // функция удаления карточки
   _handleDelete() {
-    event.target.closest('.element').remove();
+    this._newCard.remove();
+    this._newCard = null;
   }
 
   // функция обработки нажатия лайка
   _handleLike() {
-    event.target.classList.toggle('element__like_active')
+    this._likeButton.classList.toggle('element__like_active')
   }
 }
