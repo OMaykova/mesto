@@ -13,6 +13,6 @@ export class UserInfo {
   // функция добавления данных пользователя из формы в HTML
   setUserInfo(data) {
     this._userName.textContent = data.name;
-    this._description.textContent = data.description
+    this._description.textContent = data.about
   }
 }

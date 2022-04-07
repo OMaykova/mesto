@@ -1,0 +1,16 @@
+.profile__avatar_change {
+  opacity: 0;
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(../../../../images/pen.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 1s;
+}
+.profile__avatar_change:hover {
+  opacity: 1;
+}

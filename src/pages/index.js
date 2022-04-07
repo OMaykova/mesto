@@ -1,5 +1,6 @@
 import {userConfig, configValidation, profileEditButton, cardsAddButton, popupEditProfile, popupAddCards, popupOpenCard,
-   popupName, popupDescription, formEditProfile, formAddCard} from '../scripts/utils/constants.js';
+   popupName, popupDescription, formEditProfile, formAddCard, avatar, cardsData, popupDelete, popupAvatar, formAvatar, avatarChangeButton}
+   from '../scripts/utils/constants.js';
 import {initialCards} from '../scripts/utils/cards.js';
 import {FormValidator} from '../scripts/components/FormValidator.js';
 import {Card} from '../scripts/components/Card.js';
@@ -8,25 +9,84 @@ import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { PopupWithImage} from '../scripts/components/PopupWithImage.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 import '../pages/index.css';
+import {api} from '../scripts/Api.js';
 
-// Создание класса popup с картинкой
+
+// Создание класса информации о пользователе
+const { nameSelector, descriptionSelector} = userConfig;
+const userInfo = new UserInfo(nameSelector, descriptionSelector);
+
+// Идентификатор пользователя
+let userId;
+
+// Блок создания запросов на сервер
+api.getUserInfo()
+  .then((res) => {
+    // const data = { name: res.name, description: res.about };
+    userInfo.setUserInfo(res);
+    avatar.setAttribute('src', res.avatar)
+    userId = res._id;
+})
+
+api.getInitialCards()
+  .then((cardList) => {
+    console.log(cardList)
+    cardList.forEach (obj => {
+      const card = createClassCard({
+      caption: obj.name,
+      link: obj.link,
+      likes: obj.likes,
+      id: obj._id,
+      userId: userId,
+      ownerId: obj.owner._id
+    })
+    initialCardList.addItem(card)
+  })
+})
+
+// Создание экземпляра класса popup с картинкой
 const popUpWithImg = new PopupWithImage(popupOpenCard);
 
-// Инициализация класса Card
+// Создание экземпляра класса popup удаления карточки
+const popupDeleteConfirm = new PopupWithForm({
+  popupSelector: popupDelete})
+
+// Инициализация экземпляра класса Card
 function createClassCard (data) {
   const card = new Card({
     data,
     handleCardClick: (caption, link) => {
       popUpWithImg.open(caption, link)
+    },
+    handleDeleteClick: (id) => {
+      popupDeleteConfirm.open();
+      popupDeleteConfirm.changeHandlerFormSubmit(() => {
+        api.deleteCard(id)
+          .then(() => {
+            card.deleteCard();
+            popupDeleteConfirm.close()
+          })
+      })
+    },
+    handleLikeClick: (id) => {
+      if(card.isLiked()) {
+        api.removeLike(id)
+          .then(res =>
+            card.setLike(res.likes))
+      } else {
+        api.setLike(id)
+          .then(res =>
+            card.setLike(res.likes))
+      }
     }
   }, '.element_template');
   const cardElement = card.createCard();
   return cardElement;
 }
 
-// Создание класса карточек галереи
+// Инициализация галереи
 const initialCardList = new Section({
-  data: initialCards,
+  data: cardsData,
   renderer: (el) => {
     const cardElement = createClassCard(el);
     initialCardList.addItem(cardElement);
@@ -37,22 +97,44 @@ const initialCardList = new Section({
 const popupAddUserCard = new PopupWithForm({
   popupSelector: popupAddCards,
   handleFormSubmit: (data) => {
-    const cardElement = createClassCard(data);
-    initialCardList.addUserItem(cardElement);
-    popupAddUserCard.close();
+    popupAddUserCard.changeButtonText('Сохранение...');
+    const button = document.querySelector('#addbutton').textContent;
+    console.log(button)
+    // const {caption, link} = data;
+    api.addUserCard(data)
+      .then(res => {
+        const cardElement = createClassCard({caption: res.name, link: res.link, likes: res.likes, id: res._id});
+        initialCardList.addUserItem(cardElement);
+        popupAddUserCard.close();
+      })
   }
 })
 
-// Создание класса информации о пользователе
-const { nameSelector, descriptionSelector} = userConfig;
-const userInfo = new UserInfo(nameSelector, descriptionSelector);
-
-// Создание класса popup редактирования имени и профессии
+// Создание экземпляра класса popup редактирования имени и профессии
 const popupEdit = new PopupWithForm({
   popupSelector: popupEditProfile,
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    popupEdit.changeButtonText('Сохранение...');
+    const { name, description } = data;
+    api.editProfile(name, description)
+      .then(res => {
+        userInfo.setUserInfo(res);
+      })
     popupEdit.close();
+  }
+})
+
+// Создание экземпляра класса popup смены аватара
+const popupChangeAvatar = new PopupWithForm({
+  popupSelector: popupAvatar,
+  handleFormSubmit: (data) => {
+    popupChangeAvatar.changeButtonText('Сохранение...');
+    const {link} = data;
+    api.changeAvatar(link)
+      .then((res) => {
+        avatar.src = res.avatar;
+      })
+    popupChangeAvatar.close();
   }
 })
 
@@ -62,14 +144,16 @@ formEditProfileValidator.enableValidation();
 // Валидация формы добавления новой карточки
 const formAddCardValidator = new FormValidator(configValidation, formAddCard);
 formAddCardValidator.enableValidation();
+// Валидация формы смены аватара
+const formChangeAvatarValidator = new FormValidator(configValidation, formAvatar);
+formChangeAvatarValidator.enableValidation();
 
-// Вызов метода добавления галереи в HTML
-initialCardList.renderItems();
-
-// Вызов: добавление слушателей
+// Вызов: добавление слушателей классам popupWithForm
 popUpWithImg.setEventListeners();
 popupAddUserCard.setEventListeners();
 popupEdit.setEventListeners();
+popupDeleteConfirm.setEventListeners();
+popupChangeAvatar.setEventListeners();
 
 // Добавление слушателя кнопке редактирования профиля
 profileEditButton.addEventListener('click', () => {
@@ -78,6 +162,7 @@ profileEditButton.addEventListener('click', () => {
   popupName.value = userName;
   popupDescription.value = description;
   formEditProfileValidator.toggleButtonState();
+  popupEdit.changeButtonText('Сохранить');
   popupEdit.open();
 })
 
@@ -85,9 +170,17 @@ profileEditButton.addEventListener('click', () => {
 cardsAddButton.addEventListener('click', () => {
   formAddCardValidator.toggleButtonState();
   formAddCardValidator.resetErrors();
+  popupAddUserCard.changeButtonText('Создать');
   popupAddUserCard.open();
 })
 
+// Добавление слушателя аватарке
+avatarChangeButton.addEventListener('click', () => {
+  formChangeAvatarValidator.toggleButtonState();
+  formChangeAvatarValidator.resetErrors();
+  popupChangeAvatar.changeButtonText('Сохранить');
+  popupChangeAvatar.open();
+})
 
 
 
@@ -198,4 +291,4 @@ cardsAddButton.addEventListener('click', () => {
 // });
 
 // // вызов: сохранение данных из popup добавления карточек
-// formAddCard.addEventListener('submit', handleFormAddCard);
+// formAddCard.addEventListener('submit', handleFormAddCard)

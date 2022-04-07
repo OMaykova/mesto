@@ -6,6 +6,7 @@ export class PopupWithForm extends Popup {
     this._form = this._popup.querySelector('.popup__form');
     this._inputsList = this._form.querySelectorAll('.popup__input');
     this._inputsValues = {};
+    this._buttonSubmit = this._form.querySelector('.popup__save-button')
   }
   // создаем массив с данными полей формы
   _getInputValues() {
@@ -13,6 +14,14 @@ export class PopupWithForm extends Popup {
       this._inputsValues[input.name] = input.value;
     });
     return this._inputsValues;
+  }
+  // метод подмены колбэка сабмита формы
+  changeHandlerFormSubmit(newHandlerFormSubmit) {
+    this._handleFormSubmit = newHandlerFormSubmit
+  }
+  // метод изменения надписи кнопки сабмита формы
+  changeButtonText(text) {
+    this._buttonSubmit.textContent = text;
   }
   // функция отправки данных формы
   _submitForm (evt) {

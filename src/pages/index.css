@@ -38,3 +38,7 @@
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__input/_type/_error/popup__input_type_error.css);
 @import url(../blocks/popup/__save-button/_disabled/popup__save-button_disabled.css);
+@import url(../blocks/element/__like-count/element__like-count.css);
+@import url(../blocks/popup/__save-button/_confirm/popup__save-button_confirm.css);
+@import url(../blocks/popup/__title/_type/_confirm/popup__title_type_confirm.css);
+@import url(../blocks/profile/__avatar/_change/profile__avatar_change.css);

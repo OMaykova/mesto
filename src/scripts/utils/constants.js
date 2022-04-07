@@ -25,5 +25,12 @@ const formAddCard = document.querySelector('.popup__form_type_add');
 const popupAddInputTitle = document.querySelector('.popup__input_type_caption-title');
 const popupAddInputUrl = document.querySelector('.popup__input_type_url');
 const elements = document.querySelector('.elements');
+const avatar = document.querySelector('.profile__avatar');
+const cardsData = {};
+const popupDelete = document.querySelector('.popup_type_deleteConfirm');
+const popupAvatar = document.querySelector('.popup_type_change-avatar');
+const formAvatar = document.querySelector('.popup__form_type_change-avatar');
+const avatarChangeButton =document.querySelector('.profile__avatar_change');
+
 export { userConfig, configValidation, profileEditButton, cardsAddButton, popupEditProfile, popupAddCards, popupOpenCard, popupCloseButtons,
-  profileName, popupName,  profileDescription, popupDescription, formEditProfile, formAddCard, popupAddInputTitle, popupAddInputUrl, elements};
+  profileName, popupName,  profileDescription, popupDescription, formEditProfile, formAddCard, popupAddInputTitle, popupAddInputUrl, elements, avatar, cardsData, popupDelete, popupAvatar, formAvatar, avatarChangeButton};
