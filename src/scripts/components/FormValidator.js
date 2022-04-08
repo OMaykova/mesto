@@ -2,6 +2,8 @@ export class FormValidator {
   constructor(settings, form) {
     this._form = form;
     this._settings = settings;
+    this._inputList = Array.from(this._form.querySelectorAll(this._settings.inputSelector));
+    this._button = this._form.querySelector(this._settings.submitButtonSelector);
   }
 
 //функция добавления класса с ошибкой
@@ -30,13 +32,12 @@ export class FormValidator {
 
   // функция добавления слушателя всем полям формы
   _setFormEventListeners() {
-    this._inputList = Array.from(this._form.querySelectorAll(this._settings.inputSelector));
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', () => {
-        this._isValid(inputElement);
-        this.toggleButtonState();
+    inputElement.addEventListener('input', () => {
+      this._isValid(inputElement);
+      this.toggleButtonState();
     });
-  });
+    });
   }
 
 // функция активации кнопки submit
@@ -61,7 +62,7 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this._button = this._form.querySelector(this._settings.submitButtonSelector);
+    // this._button = this._form.querySelector(this._settings.submitButtonSelector);
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
     });

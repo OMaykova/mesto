@@ -1,5 +1,5 @@
 import {userConfig, configValidation, profileEditButton, cardsAddButton, popupEditProfile, popupAddCards, popupOpenCard,
-   popupName, popupDescription, formEditProfile, formAddCard, avatar, cardsData, popupDelete, popupAvatar, formAvatar, avatarChangeButton}
+   popupName, popupDescription, formEditProfile, formAddCard, cardsData, popupDelete, popupAvatar, formAvatar, avatarChangeButton}
    from '../scripts/utils/constants.js';
 import {initialCards} from '../scripts/utils/cards.js';
 import {FormValidator} from '../scripts/components/FormValidator.js';
@@ -10,26 +10,22 @@ import { PopupWithImage} from '../scripts/components/PopupWithImage.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 import '../pages/index.css';
 import {PopupConfirm} from '../scripts/components/PopupConfirm.js';
-import {api} from '../scripts/Api.js';
+import {api} from '../scripts/components/Api.js';
 
 
 // Создание класса информации о пользователе
-const { nameSelector, descriptionSelector} = userConfig;
-const userInfo = new UserInfo(nameSelector, descriptionSelector);
+const { nameSelector, descriptionSelector, avatar} = userConfig;
+const userInfo = new UserInfo(nameSelector, descriptionSelector, avatar);
 
 // Идентификатор пользователя
 let userId;
 
 // Блок создания запросов на сервер
-api.getUserInfo()
-  .then((res) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([res, cardList]) =>{
     userInfo.setUserInfo(res);
-    avatar.setAttribute('src', res.avatar)
+    userInfo.setAvatar(res.avatar);
     userId = res._id;
-})
-
-api.getInitialCards()
-  .then((cardList) => {
     cardList.forEach (obj => {
       const card = createClassCard({
       caption: obj.name,
@@ -38,10 +34,11 @@ api.getInitialCards()
       id: obj._id,
       userId: userId,
       ownerId: obj.owner._id
-    })
+      })
     initialCardList.addItem(card)
+    })
   })
-})
+  .catch(console.log)
 
 // Создание экземпляра класса popup с картинкой
 const popUpWithImg = new PopupWithImage(popupOpenCard);
@@ -64,6 +61,7 @@ function createClassCard (data) {
             card.deleteCard();
             popupDeleteConfirm.close()
           })
+          .catch(console.log)
       })
     },
     handleLikeClick: (id) => {
@@ -71,10 +69,12 @@ function createClassCard (data) {
         api.removeLike(id)
           .then(res =>
             card.setLike(res.likes))
+          .catch(console.log)
       } else {
         api.setLike(id)
           .then(res =>
             card.setLike(res.likes))
+          .catch(console.log)
       }
     }
   }, '.element_template');
@@ -102,6 +102,8 @@ const popupAddUserCard = new PopupWithForm({
         initialCardList.addUserItem(cardElement);
         popupAddUserCard.close();
       })
+      .catch(console.log)
+      .finally(() => {popupAddUserCard.changeButtonText('Создать')})
   }
 })
 
@@ -114,8 +116,10 @@ const popupEdit = new PopupWithForm({
     api.editProfile(name, description)
       .then(res => {
         userInfo.setUserInfo(res);
+        popupEdit.close();
       })
-    popupEdit.close();
+      .catch(console.log)
+      .finally(() => {popupEdit.changeButtonText('Сохранить')})
   }
 })
 
@@ -127,9 +131,11 @@ const popupChangeAvatar = new PopupWithForm({
     const {link} = data;
     api.changeAvatar(link)
       .then((res) => {
-        avatar.src = res.avatar;
+        userInfo.setAvatar(res.avatar);
+        popupChangeAvatar.close();
       })
-    popupChangeAvatar.close();
+      .catch(console.log)
+      .finally(() => {popupChangeAvatar.changeButtonText('Сохранить')})
   }
 })
 
@@ -157,7 +163,6 @@ profileEditButton.addEventListener('click', () => {
   popupName.value = userName;
   popupDescription.value = description;
   formEditProfileValidator.toggleButtonState();
-  popupEdit.changeButtonText('Сохранить');
   popupEdit.open();
 })
 
@@ -165,7 +170,6 @@ profileEditButton.addEventListener('click', () => {
 cardsAddButton.addEventListener('click', () => {
   formAddCardValidator.toggleButtonState();
   formAddCardValidator.resetErrors();
-  popupAddUserCard.changeButtonText('Создать');
   popupAddUserCard.open();
 })
 
@@ -173,7 +177,6 @@ cardsAddButton.addEventListener('click', () => {
 avatarChangeButton.addEventListener('click', () => {
   formChangeAvatarValidator.toggleButtonState();
   formChangeAvatarValidator.resetErrors();
-  popupChangeAvatar.changeButtonText('Сохранить');
   popupChangeAvatar.open();
 })
 

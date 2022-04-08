@@ -53,7 +53,7 @@
         <form class="popup__form popup__form_type_add" name="popupAddForm" novalidate>
           <input id="caption-title-input" class="popup__input popup__input_type_caption-title" type="text" name="caption" minlength="2" maxlength="30" value="" placeholder="Название" required>
           <span class="caption-title-input-error popup__error popup__error_visible"></span>
-          <input class="popup__input popup__input_type_url" type="url" name="link" value="" placeholder="Ссылка на картинку" required>
+          <input id ="url-input" class="popup__input popup__input_type_url" type="url" name="link" value="" placeholder="Ссылка на картинку" required>
           <span class="url-input-error popup__error popup__error_visible"></span>
           <button id ="addbutton" class="popup__save-button" type="submit" title="Создать" aria-label="Кнопка Создать">Создать</button>
         </form>
@@ -82,7 +82,7 @@
         <button class="popup__close-button" type="button" title="Закрыть" aria-label="Кнопка Закрыть"></button>
         <h3 class="popup__title">Обновить аватар</h3>
         <form class="popup__form popup__form_type_change-avatar" name="popupChangeAvatar" novalidate>
-          <input class="popup__input popup__input_type_url" type="url" name="link" value="" placeholder="Ссылка на новый аватар" required>
+          <input id="url-input" class="popup__input popup__input_type_url" type="url" name="link" value="" placeholder="Ссылка на новый аватар" required>
           <span class="url-input-error popup__error popup__error_visible"></span>
           <button class="popup__save-button" type="submit" title="Сохранить" aria-label="Кнопка Сохранить">Сохранить</button>
         </form>
