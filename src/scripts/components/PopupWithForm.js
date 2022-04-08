@@ -15,10 +15,6 @@ export class PopupWithForm extends Popup {
     });
     return this._inputsValues;
   }
-  // метод подмены колбэка сабмита формы
-  changeHandlerFormSubmit(newHandlerFormSubmit) {
-    this._handleFormSubmit = newHandlerFormSubmit
-  }
   // метод изменения надписи кнопки сабмита формы
   changeButtonText(text) {
     this._buttonSubmit.textContent = text;

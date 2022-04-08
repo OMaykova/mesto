@@ -9,6 +9,7 @@ import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { PopupWithImage} from '../scripts/components/PopupWithImage.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 import '../pages/index.css';
+import {PopupConfirm} from '../scripts/components/PopupConfirm.js';
 import {api} from '../scripts/Api.js';
 
 
@@ -22,7 +23,6 @@ let userId;
 // Блок создания запросов на сервер
 api.getUserInfo()
   .then((res) => {
-    // const data = { name: res.name, description: res.about };
     userInfo.setUserInfo(res);
     avatar.setAttribute('src', res.avatar)
     userId = res._id;
@@ -30,7 +30,6 @@ api.getUserInfo()
 
 api.getInitialCards()
   .then((cardList) => {
-    console.log(cardList)
     cardList.forEach (obj => {
       const card = createClassCard({
       caption: obj.name,
@@ -48,9 +47,8 @@ api.getInitialCards()
 const popUpWithImg = new PopupWithImage(popupOpenCard);
 
 // Создание экземпляра класса popup удаления карточки
-const popupDeleteConfirm = new PopupWithForm({
+const popupDeleteConfirm = new PopupConfirm({
   popupSelector: popupDelete})
-
 // Инициализация экземпляра класса Card
 function createClassCard (data) {
   const card = new Card({
@@ -60,7 +58,7 @@ function createClassCard (data) {
     },
     handleDeleteClick: (id) => {
       popupDeleteConfirm.open();
-      popupDeleteConfirm.changeHandlerFormSubmit(() => {
+      popupDeleteConfirm.changeHandlerSubmit(() => {
         api.deleteCard(id)
           .then(() => {
             card.deleteCard();
@@ -98,9 +96,6 @@ const popupAddUserCard = new PopupWithForm({
   popupSelector: popupAddCards,
   handleFormSubmit: (data) => {
     popupAddUserCard.changeButtonText('Сохранение...');
-    const button = document.querySelector('#addbutton').textContent;
-    console.log(button)
-    // const {caption, link} = data;
     api.addUserCard(data)
       .then(res => {
         const cardElement = createClassCard({caption: res.name, link: res.link, likes: res.likes, id: res._id});
