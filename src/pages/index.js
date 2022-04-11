@@ -98,7 +98,8 @@ const popupAddUserCard = new PopupWithForm({
     popupAddUserCard.changeButtonText('Сохранение...');
     api.addUserCard(data)
       .then(res => {
-        const cardElement = createClassCard({caption: res.name, link: res.link, likes: res.likes, id: res._id});
+        console.log('Это res',res)
+        const cardElement = createClassCard({caption: res.name, link: res.link, likes: res.likes, id: res._id, ownerId: res.owner._id, userId});
         initialCardList.addUserItem(cardElement);
         popupAddUserCard.close();
       })
