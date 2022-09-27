@@ -1,28 +1,27 @@
-# **Проектная работа: Сервис Mesto**
+# **Project work: Mesto Service**
 
-Работа представлена одностраничным сайтом, созданным по макету из Figma.
-Это интерактивной страница, куда можно добавлять фотографии, удалять их и ставить лайки.
+The work is presented by a one-page website created based on a layout from Figma.
+This is an interactive page where you can add photos, delete them and put likes.
+[Site](https://omaykova.github.io/mesto/)
 
-[Онлайн-версия](https://omaykova.github.io/mesto/) также доступна!
-
-## Технологии
+## Technologies
 * HTML
 * CSS
 * БЭМ
 * Flexbox
 * Grid Layout
-* JavaScript (ООП, модули)
+* JavaScript 
 
-## Необходимые компоненты
-Чтобы внести свой вклад, вам необходимо установить следующие предварительные компоненты:
+## Required components
+To contribute, you need to install the following pre-components:
 * Node.js
 * Webpack
 * Babel
-* IDE на ваш выбор
-## Создание и запуск проекта
+* IDE at your choice
+## Creating and launching a project
 * npm run build
 * npm run dev
-## Дальнейшие улучшения
-* Разработать функционал добавления и удаления новых фотографий (сделано)
-* Сделать счетчик на лайки(сделано)
-* Сделать авторизацию пользователя
+## Further improvements
+* Develop functionality for adding and deleting new photos (done)
+* Make a counter for likes(done)
+* Make user authorization (done)
